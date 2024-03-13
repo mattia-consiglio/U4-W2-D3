@@ -13,6 +13,18 @@ public class Customer {
         this.id = new Random().nextLong();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getTier() {
+        return tier;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
