@@ -13,7 +13,7 @@ public class Main {
         Product p1 = new Product("Dune", "Books");
         Product p2 = new Product("Apple", "Food");
         Product p3 = new Product("Banana", "Boys");
-        Product p4 = new Product("Pineapple", "Baby");
+        Product p4 = new Product("Pineapple", "BaBy");
         Product p5 = new Product("Done 2", "Books");
 
         List<Product> products = new ArrayList<Product>(Arrays.asList(p1, p2, p3, p4, p5));
@@ -37,11 +37,11 @@ public class Main {
         o3.addProduct(p3);
         o3.addProduct(p4);
         o3.addProduct(p5);
-        Order o4 = new Order("created", LocalDate.parse("2021-02-15"), LocalDate.parse("2021-02-20"), c4);
+        Order o4 = new Order("created", LocalDate.parse("2023-02-15"), LocalDate.parse("2023-02-20"), c4);
         o4.addProduct(p1);
         o4.addProduct(p2);
         o4.addProduct(p3);
-        Order o5 = new Order("created", LocalDate.parse("2021-02-20"), LocalDate.parse("2021-02-25"), c5);
+        Order o5 = new Order("created", LocalDate.parse("2024-02-20"), LocalDate.parse("2024-02-25"), c5);
         o5.addProduct(p1);
         o5.addProduct(p2);
         o5.addProduct(p3);
@@ -53,7 +53,7 @@ public class Main {
         // 1. Obtain a list af products that are in the category "Books" and have a price greater than 100.
         List<Product> products1 = products.stream().filter(product -> product.getCategory().equalsIgnoreCase("books") && product.getPrice() > 100).toList();
         System.out.println("1. Obtain a list af products that are in the category \"Books\" and have a price greater than 100");
-
+        System.out.println();
         products1.forEach(System.out::println);
 
         System.out.println("-----------------------------------------------------------");
@@ -61,10 +61,10 @@ public class Main {
 
         // 2. Obtain a list of orders that have a product with the category "Baby".
         List<Order> orders1 = orders.stream().filter(order -> order.getProducts().stream()
-                .anyMatch(product -> product.getCategory()
-                        .equalsIgnoreCase("baby"))).toList();
+                .anyMatch(product -> product.getCategory().equalsIgnoreCase("baby"))).toList();
 
         System.out.println("2. Obtain a list of orders that have a product with the category \"Baby\"");
+        System.out.println();
         orders1.forEach(System.out::println);
 
         System.out.println("-----------------------------------------------------------");
@@ -81,6 +81,7 @@ public class Main {
 
 
         System.out.println("3. Obtain a list of products that have category \"boys\" and apply 10% discount to their original price");
+        System.out.println();
         products2.forEach(System.out::println);
 
         System.out.println("-----------------------------------------------------------");
@@ -92,6 +93,7 @@ public class Main {
                 .map(order -> order.getProducts()).flatMap(p -> p.stream()).toList();
 
         System.out.println("4. Obtain a list of products that have a customer with tier 2 and that have been ordered between 1st February and 1st April");
+        System.out.println();
         products3.forEach(System.out::println);
 
     }
