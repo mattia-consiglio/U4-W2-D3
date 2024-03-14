@@ -1,11 +1,12 @@
 import Shop.Customer;
 import Shop.Order;
 import Shop.Product;
-import functional_interfaces.ProductModifier;
+import functional_interfaces.GeneralModifier;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class Main {
@@ -70,14 +71,14 @@ public class Main {
         System.out.println("-----------------------------------------------------------");
 
 
-        ProductModifier productModifier = product -> {
+        GeneralModifier<Product> generalModifier = product -> {
             double price = product.getPrice();
             product.setPrice(price - (price * 0.1));
             return product;
         };
 
         // 3. Obtain a list of products that have category "boys" and apply 10% discount to their original price.
-        List<Product> products2 = products.stream().filter(product -> product.getCategory().equalsIgnoreCase("boys")).map(productModifier::modify).toList();
+        List<Product> products2 = products.stream().filter(product -> product.getCategory().equalsIgnoreCase("boys")).map(generalModifier::modify).toList();
 
 
         System.out.println("3. Obtain a list of products that have category \"boys\" and apply 10% discount to their original price");
@@ -90,7 +91,7 @@ public class Main {
         // 4. Obtain a list of products that have a customer with tier 2 and that have been ordered between 1st February and 1st April.
         List<Product> products3 = orders.stream()
                 .filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isAfter(LocalDate.parse("2021-02-01")) && order.getOrderDate().isBefore(LocalDate.parse("2021-04-01")))
-                .map(order -> order.getProducts()).flatMap(p -> p.stream()).toList();
+                .map(Order::getProducts).flatMap(Collection::stream).toList();
 
         System.out.println("4. Obtain a list of products that have a customer with tier 2 and that have been ordered between 1st February and 1st April");
         System.out.println();
